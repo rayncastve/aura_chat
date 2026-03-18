@@ -56,7 +56,7 @@ Informar el riesgo cruzando datos locales (lluvia) y regionales (huracanes) usan
 
 # Inicializar el modelo con las herramientas
 modelo = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="gemini-1.5-flash-latest",
     system_instruction=INSTRUCCIONES_AURA,
     tools=[consultar_clima_caraballeda, consultar_alerta_huracanes]
 )
