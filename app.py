@@ -56,9 +56,20 @@ Informar el riesgo cruzando datos locales (lluvia) y regionales (huracanes) usan
 💡 **Guías Oficiales:** [AQUÍ](https://storymaps.arcgis.com/stories/b649f5d8425443198bbad65eb39528f5#ref-n-0VE7BJ)
 """
 
+import os
+
+# Cargar la base de conocimiento local para AURA
+base_conocimiento = ""
+ruta_conocimiento = os.path.join(os.path.dirname(__file__), "conocimiento_bot", "Base_Conocimiento.txt")
+try:
+    with open(ruta_conocimiento, "r", encoding="utf-8") as f:
+        base_conocimiento = f"\n\n<BASE_DE_CONOCIMIENTO_TECNICO>\n{f.read()}\n</BASE_DE_CONOCIMIENTO_TECNICO>\nUtiliza esta base de conocimiento SIEMPRE que te pregunten sobre metodologías, conceptos teóricos, estadísticas o protocolos de seguridad."
+except Exception:
+    pass
+
 # Configuración del modelo en la nueva API
 config = types.GenerateContentConfig(
-    system_instruction=INSTRUCCIONES_AURA,
+    system_instruction=INSTRUCCIONES_AURA + base_conocimiento,
     tools=[consultar_clima_caraballeda, consultar_alerta_huracanes],
     temperature=0.7,
 )
