@@ -6,6 +6,16 @@ import requests
 # --- 1. CONFIGURACIÓN DE LA PÁGINA ---
 st.set_page_config(page_title="AURA - Caraballeda", page_icon="🛰️", layout="centered")
 
+# Ocultar menú flotante, pie de página y encabezados propios de Streamlit
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 # --- 2. CONFIGURACIÓN DE GEMINI ---
 # Validar si existe la llave en st.secrets
 if "GEMINI_API_KEY" not in st.secrets:
